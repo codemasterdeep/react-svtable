@@ -1,0 +1,218 @@
+.sv-table-responsive{
+    min-width: 300px;
+    overflow-x: auto;
+    min-height: 100px;
+    margin:0 auto;
+    text-align: left;
+    border:1px solid #ccc;
+    .sv-table-wrapper{
+        max-height:460px;
+        
+    }
+    .sv-table{
+        padding: 0px;
+        display: table;
+        // border-collapse: collapse;
+        border-color: #fff;
+        min-width: 50rem;
+        border: 1px solid #ccc;
+        width: 100%;
+        background-color: #fff;
+        thead.sv-table-head{
+            color:#292929;
+            background-color: #eaeaea;
+            height: 40px;
+            th { 
+                padding: 5px;
+                width: auto;
+            }
+            
+        }
+
+        .sv-selectable {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            text-align: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+            /* On mouse-over, add a grey background color */
+            &hover input~.checkmark {
+                background-color: #ccc;
+            }
+            /* Create a custom checkbox */
+            .checkmark {
+                position: absolute;
+                top:-2px;
+                left: 10px;
+                height: 16px;
+                width: 16px;
+                background-color: #fff;
+                border:1px solid #292929;
+                border-radius: 3px;
+            }
+
+            /* When the checkbox is checked, add a blue background */
+            input:checked~.checkmark {
+                background-color: #2196F3;
+            }
+
+            /* Create the checkmark/indicator (hidden when not checked) */
+            .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+
+            /* Show the checkmark when checked */
+            input:checked~.checkmark:after {
+                display: block;
+            }
+
+            /* Style the checkmark/indicator */
+            .checkmark:after {
+                left: 4px;
+                top: 0px;
+                width: 5px;
+                height: 10px;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
+        .sv-table-body{
+            height:auto;
+            tr{
+                border-color:#ccc;
+                padding: 5px;
+                height:40px;
+                &:hover{
+                    background-color: #ccc;
+                    color: #fff;
+                }
+            }
+            tr:nth-child(odd) {
+                background-color: #f2f2f2;
+                &:hover {
+                    background-color: #ccc;
+                    color: #fff;
+                }
+            }
+            td{
+                padding: 5px;
+            }
+            td.sv-action{
+                position: relative;
+                width:40px;
+                .sv-action-popup{
+                    position: absolute;
+                    z-index: 99999;
+                    top:0;
+                    right:0;
+                    min-width:200px;
+                    border:1px solid #ccc;
+                    border-radius:5px;
+                    background-color: #fff;
+                    box-shadow: -2px 2px 10px 1px #000;
+                    ul{
+                        list-style: none;
+                        background-color: #fff;
+                        margin: 0px;
+                        padding: 0px;
+                        overflow: hidden;
+                        li{
+                            margin: 0px;
+                            padding: 5px 10px;
+                            color:#000;
+                            text-align: left;
+                            height:25px;
+                            letter-spacing: 2px;
+                            font-size: 16px;
+                            cursor: pointer;
+                            &:hover{
+                                background-color: #2196F3;
+                                color: #fff;
+                            }
+                        }
+                        
+                    }
+                }
+                
+            }
+        }
+    }
+
+    .sv-table-footer{
+        background-color: #f2f2f2;
+        padding: 5px;
+    }
+    .sv-pagination{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        ul{
+            padding: 0px;
+            background-color: #f2f2f2;
+            // border: 1px solid #ccc;
+            // max-width: 287px;
+            
+            li{
+                list-style-type: none;
+                display: inline-block;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-right: none;
+                padding: 5px;
+                min-width: 30px;
+                height: 20px;
+                line-height: 18px;
+                font-size: 14px;
+                font-weight: bold;
+                cursor: pointer;
+                user-select:none;
+                &:hover {
+                    color: #6093dc;
+                    background-color: #ccc;
+                }
+                &.active {
+                    color: #fff;
+                    background-color: #6093dc;
+                }
+            }
+            li:first-child {
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+            }
+            li:last-child {
+                border-right: 1px solid #ccc; 
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+        }
+    }
+}
+
+.sv-popup-cover {
+    position: fixed;
+    z-index:999;
+    top:0;
+    left:0;
+    background-color: #000;
+    opacity:0.4;
+    width:100%;
+    height:100%;
+}
