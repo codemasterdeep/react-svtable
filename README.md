@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# react-svtable
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+`react-svtable` is a React component library for creating interactive data tables. It provides a simple and customizable way to display tabular data with features like sorting, pagination, selection, and actions.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+You can install `react-svtable` via npm or yarn:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npm install react-svtable
+# or
+yarn add react-svtable
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#Usage
+To use react-svtable, import the DataTable component into your React application:
 
-### `npm test`
+```bash
+import React, { useState } from 'react';
+import DataTable from 'react-svtable';
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const Contacts = () => {
+    const [columns] = useState([
+        { name: 'name', label: 'Name', sort: true },
+        { name: 'email', label: 'Email', sort: true },
+        { name: 'mobile', label: 'Mobile', sort: true },
+    ]);
+    const [contacts] = useState([
+    {
+        name: 'Codemaster',
+        email: 'codemaster@example.com',
+        mobile: '9988099880',
+    },
+    { name: 'Tony Stark', email: 'tony@stark.com', mobile: '9988199881' },
+    { name: 'Bruce Banner', email: 'banner@hulk.com', mobile: '9988299882' },
+    { name: 'Micky', email: 'micky@diseny.com', mobile: '9988399883' },
+    ]);
 
-### `npm run build`
+return (
+    <React.Fragment>
+        <h1>Contacts</h1>
+        <DataTable
+            title='Datatable'
+            columns={columns}
+            data={contacts}
+            recordPerPage={10}
+            isSelectable={true}
+            selectedRows={[2,3]}
+            isPagination={true}
+            sortable={true}
+            hasActionMenu={true}
+            actions={[
+            { name: 'preview', label: 'Preview', icon: '>>' },
+            { name: 'edit', label: 'Edit', icon: '' },
+            { name: 'delete', label: 'Delete', icon: '' },
+            ]}
+            getActionValue={(action, value) => {
+            console.log('action:', action, 'Row:', value);
+            }}
+        />
+    </React.Fragment>
+    );
+};
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+export default Contacts;
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Props
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **title**: Title of the table.
+- **columns**: An array of column objects defining the columns of the table. Each column object should have properties like `name`, `label`, and `sort`.
+- **data**: An array of objects representing the data to be displayed in the table.
+- **recordPerPage**: Number of records to display per page.
+- **isSelectable**: Boolean indicating whether rows can be selected.
+- **selectedRows**: Array of indices of initially selected rows.
+- **isPagination**: Boolean indicating whether pagination should be enabled.
+- **sortable**: Boolean indicating whether columns should be sortable.
+- **hasActionMenu**: Boolean indicating whether an action menu should be displayed for each row.
+- **actions**: An array of action objects defining the actions available in the action menu. Each action object should have properties like `name`, `label`, and `icon`.
+- **getActionValue**: A callback function that receives the selected action and the corresponding row data when an action is performed.
 
-### `npm run eject`
+## License
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the LICENSE file for details.
